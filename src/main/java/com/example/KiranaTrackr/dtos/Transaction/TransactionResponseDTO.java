@@ -1,5 +1,7 @@
 package com.example.KiranaTrackr.dtos.Transaction;
 
+import com.example.KiranaTrackr.models.Store;
+import com.example.KiranaTrackr.models.User;
 import com.example.KiranaTrackr.models.enums.CurrencyType;
 import com.example.KiranaTrackr.models.enums.PaymentType;
 import lombok.*;
@@ -18,7 +20,7 @@ public class TransactionResponseDTO {
     private BigDecimal amount;
     private PaymentType paymentType;
     private CurrencyType currencyType;
-    private String customerId;
-    private String storeId;
+    private User customer;
+    private Store store;
     private LocalDateTime timestamp;
 }

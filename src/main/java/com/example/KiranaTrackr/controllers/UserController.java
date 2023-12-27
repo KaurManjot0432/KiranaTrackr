@@ -2,7 +2,7 @@ package com.example.KiranaTrackr.controllers;
 
 import com.example.KiranaTrackr.dtos.User.UserRequestDTO;
 import com.example.KiranaTrackr.dtos.User.UserResponseDTO;
-import com.example.KiranaTrackr.services.UserService;
+import com.example.KiranaTrackr.services.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

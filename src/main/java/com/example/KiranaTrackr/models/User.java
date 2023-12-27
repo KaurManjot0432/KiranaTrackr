@@ -18,7 +18,6 @@ import jakarta.validation.constraints.Pattern;
 @Document(collection = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @NotNull (message = "User Name is required")

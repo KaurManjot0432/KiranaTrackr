@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.services;
+package com.example.KiranaTrackr.services.User;
 
 import com.example.KiranaTrackr.dtos.User.UserRequestDTO;
 import com.example.KiranaTrackr.dtos.User.UserResponseDTO;

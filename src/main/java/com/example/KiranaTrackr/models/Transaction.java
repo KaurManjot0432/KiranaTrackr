@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.example.KiranaTrackr.models.enums.PaymentType;
 import com.example.KiranaTrackr.models.enums.CurrencyType;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 @Entity
 @Getter
@@ -19,7 +20,6 @@ import com.example.KiranaTrackr.models.enums.CurrencyType;
 @Document(collection = "transactions")
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private LocalDateTime timestamp;
@@ -35,12 +35,13 @@ public class Transaction {
     @NotNull
     private CurrencyType currencyType;
 
+    @DBRef
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private User customer;
 
-    @ManyToOne
+    @DBRef
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
     private Store store;
 }

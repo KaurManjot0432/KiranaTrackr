@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.validation.constraints.NotNull;
 import com.example.KiranaTrackr.models.enums.CurrencyType;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 @Entity
 @Getter
@@ -16,7 +17,6 @@ import com.example.KiranaTrackr.models.enums.CurrencyType;
 @Document(collection = "stores")
 public class Store {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @NotNull (message = "Store Name is required")
@@ -28,7 +28,8 @@ public class Store {
     @NotNull (message = "Store Address is required")
     private String address;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @DBRef
     private User storeOwner;
 
     @Enumerated(EnumType.STRING)

@@ -17,7 +17,7 @@ import com.example.KiranaTrackr.models.enums.CurrencyType;
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @NotNull (message = "Store Name is required")
     private String name;

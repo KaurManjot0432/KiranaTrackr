@@ -20,7 +20,7 @@ import com.example.KiranaTrackr.models.enums.CurrencyType;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private LocalDateTime timestamp;
 

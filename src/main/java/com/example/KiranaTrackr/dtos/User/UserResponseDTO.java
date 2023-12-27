@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.Dtos.User;
+package com.example.KiranaTrackr.dtos.User;
 
 import lombok.*;
 
@@ -8,8 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString
-public class UserResponseDto {
-    private Long id;
+public class UserResponseDTO {
+    private String id;
     private String name;
     private String email;
     private String phoneNumber;

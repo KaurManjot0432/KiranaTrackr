@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -35,44 +36,53 @@ public class TransactionController {
 
             Transaction response = transactionService.createTransaction(transaction);
 
-            return new ResponseEntity<>(TransactionResponseDTOMapper.mapToTransactionResponseDTO(response), HttpStatus.CREATED);
+            TransactionResponseDTO responseDTO = TransactionResponseDTOMapper.mapToTransactionResponseDTO(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
         } catch (UserNotFoundException e) {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         } catch (StoreNotFoundException e) {
-            return new ResponseEntity<>("Store not found", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Store not found");
         } catch (Exception e) {
             logger.error("Error occurred while processing createTransaction request", e);
-            return new ResponseEntity<>("Some Error occurred while processing your request", HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Some Error occurred while processing your request");
         }
     }
+
 
     @GetMapping("/{transactionId}")
     public ResponseEntity<?> getTransactionById(@PathVariable String transactionId) {
         try {
-            TransactionResponseDTO responseDTO = transactionService.getTransactionById(transactionId);
-            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+            TransactionResponseDTO responseDTO = TransactionResponseDTOMapper.mapToTransactionResponseDTO(
+                    transactionService.getTransactionById(transactionId)
+            );
+
+            return ResponseEntity.ok(responseDTO);
         } catch (TransactionNotFoundException e) {
-            // Handle the case where the transaction is not found
-            return new ResponseEntity<>("Transaction not found", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Transaction not found");
         } catch (Exception e) {
             logger.error("Error occurred while processing getTransactionById request", e);
-            return new ResponseEntity<>("Some Error occurred while processing your request", HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Some Error occurred while processing your request");
         }
     }
+
 
     @GetMapping("/store/{storeId}")
     public ResponseEntity<?> getTransactionsByStoreId(@PathVariable String storeId) {
         try {
-            List<TransactionResponseDTO> responseDTOs = transactionService.getTransactionsByStoreId(storeId);
+            List<TransactionResponseDTO> responseDTOs = transactionService
+                    .getTransactionsByStoreId(storeId)
+                    .stream()
+                    .map(TransactionResponseDTOMapper::mapToTransactionResponseDTO)
+                    .collect(Collectors.toList());
 
-            if (responseDTOs.isEmpty()) {
-                return new ResponseEntity<>("No transactions found for the specified store", HttpStatus.NOT_FOUND);
-            }
-
-            return new ResponseEntity<>(responseDTOs, HttpStatus.OK);
+            return ResponseEntity.ok(responseDTOs);
         } catch (Exception e) {
             logger.error("Error occurred while processing getTransactionsByStoreId request", e);
-            return new ResponseEntity<>("Some Error occurred while processing your request", HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Some Error occurred while processing your request");
         }
     }
+
 }

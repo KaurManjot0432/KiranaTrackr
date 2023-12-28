@@ -9,7 +9,7 @@ import java.util.List;
 public interface TransactionService {
     Transaction createTransaction(Transaction transaction);
 
-    TransactionResponseDTO getTransactionById(String transactionId);
+    Transaction getTransactionById(String transactionId);
 
-    List<TransactionResponseDTO> getTransactionsByStoreId(String storeId);
+    List<Transaction> getTransactionsByStoreId(String storeId);
 }

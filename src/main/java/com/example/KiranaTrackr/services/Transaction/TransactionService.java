@@ -6,4 +6,5 @@ import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
 public interface TransactionService {
     TransactionResponseDTO createTransaction(TransactionRequestDTO transactionRequestDTO);
 
+    TransactionResponseDTO getTransactionById(String transactionId);
 }

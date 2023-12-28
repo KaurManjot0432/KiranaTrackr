@@ -4,6 +4,7 @@ import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTO;
 import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
 import com.example.KiranaTrackr.exceptions.UserNotFoundException;
+import com.example.KiranaTrackr.exceptions.TransactionNotFoundException;
 import com.example.KiranaTrackr.models.Store;
 import com.example.KiranaTrackr.models.Transaction;
 import com.example.KiranaTrackr.models.User;
@@ -62,6 +63,17 @@ public class TransactionServiceImpl implements TransactionService {
 
         TransactionResponseDTO responseDTO = new TransactionResponseDTO();
         BeanUtils.copyProperties(savedTransaction, responseDTO);
+
+        return responseDTO;
+    }
+
+    @Override
+    public TransactionResponseDTO getTransactionById(String transactionId) {
+        Transaction transaction = transactionRepository.findById(transactionId)
+                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with ID: " + transactionId));
+
+        TransactionResponseDTO responseDTO = new TransactionResponseDTO();
+        BeanUtils.copyProperties(transaction, responseDTO);
 
         return responseDTO;
     }

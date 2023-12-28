@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -76,5 +79,18 @@ public class TransactionServiceImpl implements TransactionService {
         BeanUtils.copyProperties(transaction, responseDTO);
 
         return responseDTO;
+    }
+
+    @Override
+    public List<TransactionResponseDTO> getTransactionsByStoreId(String storeId) {
+        List<Transaction> transactions = transactionRepository.findByStoreId(storeId);
+
+        return transactions.stream()
+                .map(transaction -> {
+                    TransactionResponseDTO responseDTO = new TransactionResponseDTO();
+                    BeanUtils.copyProperties(transaction, responseDTO);
+                    return responseDTO;
+                })
+                .collect(Collectors.toList());
     }
 }

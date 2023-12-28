@@ -27,10 +27,10 @@ public class ReportServiceFactory {
         this.reportGenerator = reportGenerator;
     }
 
-    public ReportResult getReportGenerator(ReportType reportType, String date, Integer year, Integer month, String startDate, String endDate) {
+    public ReportResult getReportGenerator(String storeId, ReportType reportType, String date, Integer year, Integer month, String startDate, String endDate) {
         return switch (reportType) {
-            case DAILY -> reportGenerator.generateDailyReport(date);
-            case CUSTOM -> reportGenerator.generateCustomReport(startDate, endDate);
+            case DAILY -> reportGenerator.generateDailyReport(storeId, date);
+            case CUSTOM -> reportGenerator.generateCustomReport(storeId, startDate, endDate);
             default -> throw new IllegalArgumentException("Unsupported report type: " + reportType);
         };
     }

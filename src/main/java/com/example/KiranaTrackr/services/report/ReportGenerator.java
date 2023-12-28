@@ -30,10 +30,10 @@ public class ReportGenerator implements ReportService {
      * @return ReportResult containing daily transaction details and balance.
      */
     @Override
-    public ReportResult generateDailyReport(String date) {
+    public ReportResult generateDailyReport(String storeId, String date) {
         LocalDate startDate = LocalDate.parse(date);
         LocalDate endDate = startDate.plusDays(1);
-        List<Transaction> transactions = transactionRepository.findByCreatedAt(startDate, endDate);
+        List<Transaction> transactions = transactionRepository.findByCreatedAtAndStoreId(storeId, startDate, endDate);
         List<TransactionResponseDTO> responseDTOs = transactions
                 .stream()
                 .map(TransactionResponseDTOMapper::mapToTransactionResponseDTO)
@@ -54,10 +54,10 @@ public class ReportGenerator implements ReportService {
      * @return ReportResult containing transaction details and balance for the specified period.
      */
     @Override
-    public ReportResult generateCustomReport(String startDate, String endDate) {
+    public ReportResult generateCustomReport(String storeId, String startDate, String endDate) {
         LocalDate localStartDate = LocalDate.parse(startDate);
         LocalDate localEndDate = LocalDate.parse(endDate);
-        List<Transaction> transactions = transactionRepository.findByCreatedAtBetween(localStartDate, localEndDate);
+        List<Transaction> transactions = transactionRepository.findByCreatedAtBetween(storeId, localStartDate, localEndDate);
         List<TransactionResponseDTO> responseDTOs = transactions
                 .stream()
                 .map(TransactionResponseDTOMapper::mapToTransactionResponseDTO)

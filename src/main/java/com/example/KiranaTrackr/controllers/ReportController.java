@@ -30,8 +30,9 @@ public class ReportController {
      * @return ResponseEntity containing the generated report and HTTP status.
      */
 
-    @GetMapping("/{reportType}")
-    public ResponseEntity<?> getReport(@PathVariable String reportType,
+    @GetMapping("/{storeId}/{reportType}")
+    public ResponseEntity<?> getReport(@PathVariable String storeId,
+                                       @PathVariable String reportType,
                                                   @RequestParam(required = false) String date,
                                                   @RequestParam(required = false) Integer year,
                                                   @RequestParam(required = false) Integer month,
@@ -40,7 +41,7 @@ public class ReportController {
 
         try {
             ReportType reportTypeEnum = ReportType.valueOf(reportType);
-            ReportResult reportResult = reportServiceFactory.getReportGenerator(reportTypeEnum, date, year, month, startDate, endDate);
+            ReportResult reportResult = reportServiceFactory.getReportGenerator(storeId, reportTypeEnum, date, year, month, startDate, endDate);
             return new ResponseEntity<>(reportResult, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Invalid report type", HttpStatus.BAD_REQUEST);

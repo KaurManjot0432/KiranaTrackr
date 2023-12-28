@@ -33,7 +33,7 @@ Endpoint : POST
 http://localhost:8080/api/users
 ```
 Request Body
-```dtd
+```json
 {
   "name": "John Doe",
   "email": "john.doe@example.com",
@@ -49,7 +49,7 @@ Endpoint : GET
 http://localhost:8080/api/users/{userId}
 ```
 Response Body
-```dtd
+```json
 {
     "id": "658cefc33d3d682ba28ecb53",
     "name": "Arjav",
@@ -66,7 +66,7 @@ Endpoint : POST
 http://localhost:8080/api/stores
 ```
 Request Body
-```dtd
+```json
 {
     "name": "Rohan Bakery",
     "description": "A local Bakery store",
@@ -83,7 +83,7 @@ Endpoint : GET
 http://localhost:8080/api/stores/{storeId}
 ```
 Response Body
-```dtd
+```json
 {
     "id": "658cefe43d3d682ba28ecb54",
     "name": "Arjav Bakery",
@@ -102,7 +102,7 @@ Endpoint : POST
 http://localhost:8080/api/transactions
 ```
 Request Body
-```dtd
+```json
 {
     "amount": 1000,
     "paymentType": "CASH",
@@ -120,7 +120,7 @@ Endpoint : GET
 http://localhost:8080/api/transactions/{transactionId}
 ```
 Response Body
-```dtd
+```json
 {
     "id": "658cf0133d3d682ba28ecb55",
     "amount": 499527.9922122000,
@@ -139,7 +139,7 @@ Endpoint : GET
 http://localhost:8080/api/transactions/store/{storeId}
 ```
 Response Body
-```dtd
+```json
 [
     {
     "id": "658cf0133d3d682ba28ecb55",
@@ -164,13 +164,45 @@ Response Body
 Response: Status: 200 OK
 
 
-#### 8. Get Daily Report 
+#### 8. Get Daily Store Report 
 Endpoint : GET
 ```dtd
-http://localhost:8080/api/reports/DAILY?date={date}
+http://localhost:8080/api/reports/{storeId}/DAILY?date={date}
 ```
 Response Body
+```json
+[
+    {
+    "transactions": [
+    {
+    "id": "658ce004e26813519c1e9283",
+    "amount": 6000,
+    "paymentType": "CARD",
+    "currencyType": "INR",
+    "customerId": "658c09368f175a1b67b121da",
+    "storeId": "658c1e873e9de45972c4a87d",
+    "createdAt": "2023-12-28T08:10:04.94"
+    },
+    {
+    "id": "658ce49d5009c50bf50d918f",
+    "amount": 6000,
+    "paymentType": "CARD",
+    "currencyType": "INR",
+    "customerId": "658c09368f175a1b67b121da",
+    "storeId": "658c1e873e9de45972c4a87d",
+    "createdAt": "2023-12-28T08:29:41.117"
+    }
+]
+```
+Response: Status: 200 OK
+
+#### 9. Get Custom Store Report
+Endpoint : GET
 ```dtd
+http://localhost:8080/api/reports/{storeId}/CUSTOM?startDate={startDate}&endDate={endDate}
+```
+Response Body
+```json
 [
     {
     "transactions": [

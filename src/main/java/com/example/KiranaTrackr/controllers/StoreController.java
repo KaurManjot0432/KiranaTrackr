@@ -4,6 +4,10 @@ import com.example.KiranaTrackr.dtos.Store.StoreRequestDTO;
 import com.example.KiranaTrackr.dtos.Store.StoreRequestDTOMapper;
 import com.example.KiranaTrackr.dtos.Store.StoreResponseDTO;
 import com.example.KiranaTrackr.dtos.Store.StoreResponseDTOMapper;
+import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
+import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTOMapper;
+import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
+import com.example.KiranaTrackr.exceptions.TransactionNotFoundException;
 import com.example.KiranaTrackr.models.Store;
 import com.example.KiranaTrackr.services.Store.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,21 @@ public class StoreController {
             Store response = storeService.createStore(store);
             StoreResponseDTO responseDTO = StoreResponseDTOMapper.mapToStoreResponseDTO(response);
             return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
+        } catch (Exception e) {
+            return handleException(e);
+        }
+    }
+
+    @GetMapping("/{storeId}")
+    public ResponseEntity<?> getStoreById(@PathVariable String storeId) {
+        try {
+            StoreResponseDTO responseDTO = StoreResponseDTOMapper.mapToStoreResponseDTO(
+                    storeService.getStoreById(storeId)
+            );
+
+            return ResponseEntity.ok(responseDTO);
+        } catch (StoreNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Store not found");
         } catch (Exception e) {
             return handleException(e);
         }

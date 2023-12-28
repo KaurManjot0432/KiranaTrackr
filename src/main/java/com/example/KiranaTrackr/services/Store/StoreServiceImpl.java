@@ -1,5 +1,6 @@
 package com.example.KiranaTrackr.services.Store;
 
+import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
 import com.example.KiranaTrackr.models.Store;
 import com.example.KiranaTrackr.models.User;
 import com.example.KiranaTrackr.repositories.StoreRepository;
@@ -24,8 +25,13 @@ public class StoreServiceImpl implements StoreService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         store.setStoreOwner(storeOwner);
-        Store savedStore = storeRepository.save(store);
 
-        return savedStore;
+        return storeRepository.save(store);
+    }
+
+    @Override
+    public Store getStoreById(String storeId) {
+        return storeRepository.findById(storeId)
+                .orElseThrow(() -> new StoreNotFoundException("Store not found with id : " + storeId));
     }
 }

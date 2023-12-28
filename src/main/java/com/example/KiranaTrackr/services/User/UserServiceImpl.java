@@ -1,10 +1,8 @@
 package com.example.KiranaTrackr.services.User;
 
-import com.example.KiranaTrackr.dtos.User.UserRequestDTO;
-import com.example.KiranaTrackr.dtos.User.UserResponseDTO;
+import com.example.KiranaTrackr.exceptions.UserNotFoundException;
 import com.example.KiranaTrackr.models.User;
 import com.example.KiranaTrackr.repositories.UserRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        User savedUser = userRepository.save(user);
-        return savedUser;
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User getUserById(String userId) {
+
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
     }
 }

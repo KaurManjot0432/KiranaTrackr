@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.services.Transaction;
+package com.example.KiranaTrackr.services.transaction;
 
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
 import com.example.KiranaTrackr.exceptions.UserNotFoundException;
@@ -36,6 +36,14 @@ public class TransactionServiceImpl implements TransactionService {
         this.currencyConversionService = currencyConversionService;
     }
 
+    /**
+     * Creates a new transaction and performs currency conversion based on store's local currency.
+     *
+     * @param transaction The transaction to be created.
+     * @return The created transaction.
+     * @throws UserNotFoundException    If the user with the specified ID is not found.
+     * @throws StoreNotFoundException   If the store with the specified ID is not found.
+     */
     @Override
     public Transaction createTransaction(Transaction transaction) {
         User user = userRepository.findById(transaction.getCustomerId())
@@ -55,23 +63,32 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setCustomer(user);
         transaction.setStore(store);
 
-        Transaction savedTransaction = transactionRepository.save(transaction);
-
-        return savedTransaction;
+        return transactionRepository.save(transaction);
     }
 
+    /**
+     * Retrieves a transaction by its unique identifier.
+     *
+     * @param transactionId The unique identifier of the transaction.
+     * @return The transaction with the specified ID.
+     * @throws TransactionNotFoundException If the transaction with the specified ID is not found.
+     */
     @Override
     public Transaction getTransactionById(String transactionId) {
-        Transaction transaction = transactionRepository.findById(transactionId)
-                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with ID: " + transactionId));
 
-        return transaction;
+        return transactionRepository.findById(transactionId)
+                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with ID: " + transactionId));
     }
 
+    /**
+     * Retrieves all transactions associated with a specific store.
+     *
+     * @param storeId The unique identifier of the store.
+     * @return List of transactions associated with the specified store.
+     */
     @Override
     public List<Transaction> getTransactionsByStoreId(String storeId) {
-        List<Transaction> transactions = transactionRepository.findByStoreId(storeId);
 
-        return transactions;
+        return transactionRepository.findByStoreId(storeId);
     }
 }

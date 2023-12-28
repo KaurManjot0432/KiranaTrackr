@@ -6,7 +6,7 @@ import com.example.KiranaTrackr.dtos.user.UserResponseDTO;
 import com.example.KiranaTrackr.dtos.user.UserResponseDTOMapper;
 import com.example.KiranaTrackr.exceptions.UserNotFoundException;
 import com.example.KiranaTrackr.models.User;
-import com.example.KiranaTrackr.services.User.UserService;
+import com.example.KiranaTrackr.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +25,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Creates a new user based on the provided UserRequestDTO.
+     *
+     * @param userRequestDTO The DTO containing information about the new user.
+     * @return ResponseEntity with the created user information and HTTP status.
+     */
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody UserRequestDTO userRequestDTO) {
         try {
@@ -39,6 +45,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Retrieves user information by the specified userId.
+     *
+     * @param userId The unique identifier of the user.
+     * @return ResponseEntity with the user information and HTTP status.
+     */
     @GetMapping("/{userId}")
     public ResponseEntity<?> getUserById(@PathVariable String userId) {
         try {

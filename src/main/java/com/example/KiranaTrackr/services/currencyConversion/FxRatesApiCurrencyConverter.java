@@ -18,6 +18,14 @@ public class FxRatesApiCurrencyConverter implements CurrencyConversionService {
         this.restTemplate = restTemplate;
     }
 
+    /**
+     * Converts the given amount from one currency to another using the FX Rates API.
+     *
+     * @param amount       The amount to be converted.
+     * @param fromCurrency The source currency.
+     * @param toCurrency   The target currency.
+     * @return The converted amount in the target currency.
+     */
     @Override
     public BigDecimal convert(BigDecimal amount, CurrencyType fromCurrency, CurrencyType toCurrency) {
         // Fetch the latest exchange rates

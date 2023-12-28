@@ -6,7 +6,7 @@ import com.example.KiranaTrackr.dtos.store.StoreResponseDTO;
 import com.example.KiranaTrackr.dtos.store.StoreResponseDTOMapper;
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
 import com.example.KiranaTrackr.models.Store;
-import com.example.KiranaTrackr.services.Store.StoreService;
+import com.example.KiranaTrackr.services.store.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +25,12 @@ public class StoreController {
         this.storeService = storeService;
     }
 
+    /**
+     * Creates a new store based on the provided StoreRequestDTO.
+     *
+     * @param storeRequestDTO The DTO containing information about the new store.
+     * @return ResponseEntity with the created store information and HTTP status.
+     */
     @PostMapping
     public ResponseEntity<?> createStore(@RequestBody StoreRequestDTO storeRequestDTO) {
         try {
@@ -37,6 +43,12 @@ public class StoreController {
         }
     }
 
+    /**
+     * Retrieves store information by the specified storeId.
+     *
+     * @param storeId The unique identifier of the store.
+     * @return ResponseEntity with the store information and HTTP status.
+     */
     @GetMapping("/{storeId}")
     public ResponseEntity<?> getStoreById(@PathVariable String storeId) {
         try {

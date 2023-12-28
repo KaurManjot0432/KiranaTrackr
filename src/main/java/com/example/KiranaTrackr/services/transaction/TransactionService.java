@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.services.Transaction;
+package com.example.KiranaTrackr.services.transaction;
 
 import com.example.KiranaTrackr.models.Transaction;
 

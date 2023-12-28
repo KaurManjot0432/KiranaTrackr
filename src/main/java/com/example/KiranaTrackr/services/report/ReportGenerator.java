@@ -23,6 +23,12 @@ public class ReportGenerator implements ReportService {
         this.transactionRepository = transactionRepository;
     }
 
+    /**
+     * Generates a daily report for the specified date.
+     *
+     * @param date The date for which the report is generated.
+     * @return ReportResult containing daily transaction details and balance.
+     */
     @Override
     public ReportResult generateDailyReport(String date) {
         LocalDate startDate = LocalDate.parse(date);
@@ -40,6 +46,13 @@ public class ReportGenerator implements ReportService {
                 .build();
     }
 
+    /**
+     * Generates a custom report for a specified date range.
+     *
+     * @param startDate The start date of the report period.
+     * @param endDate   The end date of the report period.
+     * @return ReportResult containing transaction details and balance for the specified period.
+     */
     @Override
     public ReportResult generateCustomReport(String startDate, String endDate) {
         LocalDate localStartDate = LocalDate.parse(startDate);

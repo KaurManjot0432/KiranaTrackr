@@ -18,6 +18,18 @@ public class ReportController {
         this.reportServiceFactory = reportServiceFactory;
     }
 
+    /**
+     * Retrieves a report based on the specified type and optional parameters.
+     *
+     * @param reportType The type of the report (e.g., DAILY, MONTHLY).
+     * @param date       The specific date for the report (optional).
+     * @param year       The year for the report (optional).
+     * @param month      The month for the report (optional).
+     * @param startDate  The start date for the report range (optional).
+     * @param endDate    The end date for the report range (optional).
+     * @return ResponseEntity containing the generated report and HTTP status.
+     */
+
     @GetMapping("/{reportType}")
     public ResponseEntity<?> getReport(@PathVariable String reportType,
                                                   @RequestParam(required = false) String date,

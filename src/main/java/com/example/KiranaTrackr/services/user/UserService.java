@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.services.User;
+package com.example.KiranaTrackr.services.user;
 
 import com.example.KiranaTrackr.models.User;
 

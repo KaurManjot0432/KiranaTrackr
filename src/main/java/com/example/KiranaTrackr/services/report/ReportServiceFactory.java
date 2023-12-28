@@ -10,6 +10,18 @@ public class ReportServiceFactory {
 
     private final ReportGenerator reportGenerator;
 
+    /**
+     * Retrieves the appropriate report generator based on the specified report type.
+     *
+     * @param reportType The type of the report (DAILY, CUSTOM, etc.).
+     * @param date       The date for daily reports.
+     * @param year       The year for custom reports.
+     * @param month      The month for custom reports.
+     * @param startDate  The start date for custom reports.
+     * @param endDate    The end date for custom reports.
+     * @return ReportResult generated based on the specified report type.
+     * @throws IllegalArgumentException If an unsupported report type is provided.
+     */
     @Autowired
     public ReportServiceFactory(ReportGenerator reportGenerator) {
         this.reportGenerator = reportGenerator;

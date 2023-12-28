@@ -6,7 +6,7 @@ import com.example.KiranaTrackr.dtos.transaction.TransactionRequestDTO;
 import com.example.KiranaTrackr.dtos.transaction.TransactionResponseDTOMapper;
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
 import com.example.KiranaTrackr.models.Transaction;
-import com.example.KiranaTrackr.services.Transaction.TransactionService;
+import com.example.KiranaTrackr.services.transaction.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +47,12 @@ public class TransactionController {
         }
     }
 
-
+    /**
+     * Retrieves transaction information by the specified transactionId.
+     *
+     * @param transactionId The unique identifier of the transaction.
+     * @return ResponseEntity with the transaction information and HTTP status.
+     */
     @GetMapping("/{transactionId}")
     public ResponseEntity<?> getTransactionById(@PathVariable String transactionId) {
         try {
@@ -63,7 +68,12 @@ public class TransactionController {
         }
     }
 
-
+    /**
+     * Retrieves a list of transactions for a given storeId.
+     *
+     * @param storeId The unique identifier of the store.
+     * @return ResponseEntity with a list of transaction information and HTTP status.
+     */
     @GetMapping("/store/{storeId}")
     public ResponseEntity<?> getTransactionsByStoreId(@PathVariable String storeId) {
         try {
@@ -79,6 +89,12 @@ public class TransactionController {
         }
     }
 
+    /**
+     * Handles exceptions that may occur during transaction-related operations.
+     *
+     * @param e The exception that occurred.
+     * @return ResponseEntity with an error message and HTTP status.
+     */
     private ResponseEntity<?> handleException(Exception e) {
         logger.error("Error occurred while processing request", e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

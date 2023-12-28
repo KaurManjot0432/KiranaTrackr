@@ -1,8 +1,7 @@
 package com.example.KiranaTrackr.services.User;
 
-import com.example.KiranaTrackr.dtos.User.UserRequestDTO;
-import com.example.KiranaTrackr.dtos.User.UserResponseDTO;
+import com.example.KiranaTrackr.models.User;
 
 public interface UserService {
-    UserResponseDTO createUser(UserRequestDTO userRequestDTO);
+    User createUser(User user);
 }

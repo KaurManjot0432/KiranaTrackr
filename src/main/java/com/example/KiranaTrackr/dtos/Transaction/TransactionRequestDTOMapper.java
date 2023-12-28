@@ -1,7 +1,6 @@
 package com.example.KiranaTrackr.dtos.Transaction;
 
 import com.example.KiranaTrackr.models.Transaction;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTO;
 
 public class TransactionRequestDTOMapper {
     public static Transaction mapToTransactionRequestDTO (TransactionRequestDTO transactionRequestDTO) {

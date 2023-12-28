@@ -2,6 +2,8 @@ package com.example.KiranaTrackr.dtos.User;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,4 +15,5 @@ public class UserResponseDTO {
     private String name;
     private String email;
     private String phoneNumber;
+    private LocalDateTime createdAt;
 }

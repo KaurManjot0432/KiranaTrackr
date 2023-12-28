@@ -17,15 +17,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO createUser(UserRequestDTO userRequestDTO) {
-        User user = new User();
-        BeanUtils.copyProperties(userRequestDTO, user);
-
+    public User createUser(User user) {
         User savedUser = userRepository.save(user);
-
-        UserResponseDTO responseDTO = new UserResponseDTO();
-        BeanUtils.copyProperties(savedUser, responseDTO);
-
-        return responseDTO;
+        return savedUser;
     }
 }

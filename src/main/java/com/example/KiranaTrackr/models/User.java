@@ -3,12 +3,15 @@ package com.example.KiranaTrackr.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Pattern;
 
-@Entity
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,11 +23,12 @@ public class User {
     @Id
     private String id;
 
-    @NotNull (message = "User Name is required")
+    @NotNull
     private String name;
 
-    @NotNull (message = "User Email is required")
+    @NotNull
     @Email
+    @Indexed(unique = true)
     private String email;
 
     @NotNull
@@ -35,5 +39,8 @@ public class User {
     @Size(min=10, max=10)
     @Pattern(regexp = "[0-9]{10}")
     private String phoneNumber;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
 
 }

@@ -1,7 +1,5 @@
 package com.example.KiranaTrackr.services.Transaction;
 
-import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTO;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
 import com.example.KiranaTrackr.exceptions.UserNotFoundException;
 import com.example.KiranaTrackr.exceptions.TransactionNotFoundException;
@@ -12,7 +10,6 @@ import com.example.KiranaTrackr.repositories.StoreRepository;
 import com.example.KiranaTrackr.repositories.TransactionRepository;
 import com.example.KiranaTrackr.repositories.UserRepository;
 import com.example.KiranaTrackr.services.currencyConversion.CurrencyConversionService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

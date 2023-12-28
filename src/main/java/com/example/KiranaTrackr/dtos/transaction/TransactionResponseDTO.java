@@ -1,7 +1,5 @@
-package com.example.KiranaTrackr.dtos.Transaction;
+package com.example.KiranaTrackr.dtos.transaction;
 
-import com.example.KiranaTrackr.models.Store;
-import com.example.KiranaTrackr.models.User;
 import com.example.KiranaTrackr.models.enums.CurrencyType;
 import com.example.KiranaTrackr.models.enums.PaymentType;
 import lombok.*;

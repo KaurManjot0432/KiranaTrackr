@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.dtos.Store;
+package com.example.KiranaTrackr.dtos.store;
 
 import com.example.KiranaTrackr.models.Store;
 

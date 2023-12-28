@@ -1,7 +1,7 @@
 package com.example.KiranaTrackr.services.report;
 
-import com.example.KiranaTrackr.dtos.Report.ReportResult;
-import com.example.KiranaTrackr.dtos.Report.ReportType;
+import com.example.KiranaTrackr.dtos.report.ReportResult;
+import com.example.KiranaTrackr.dtos.report.ReportType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

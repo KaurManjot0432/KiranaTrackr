@@ -1,15 +1,13 @@
 package com.example.KiranaTrackr.controllers;
 
-import com.example.KiranaTrackr.dtos.Report.ReportResult;
-import com.example.KiranaTrackr.dtos.Report.ReportType;
-import com.example.KiranaTrackr.services.report.ReportService;
+import com.example.KiranaTrackr.dtos.report.ReportResult;
+import com.example.KiranaTrackr.dtos.report.ReportType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.KiranaTrackr.services.report.ReportServiceFactory;
 
-import java.time.LocalDate;
 @RestController
 @RequestMapping("/api/reports")
 public class ReportController {

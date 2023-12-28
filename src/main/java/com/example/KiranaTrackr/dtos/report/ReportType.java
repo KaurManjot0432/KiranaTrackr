@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.dtos.Report;
+package com.example.KiranaTrackr.dtos.report;
 
 public enum ReportType {
     DAILY,

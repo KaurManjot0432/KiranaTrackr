@@ -1,13 +1,10 @@
 package com.example.KiranaTrackr.controllers;
 
-import com.example.KiranaTrackr.dtos.Store.StoreRequestDTO;
-import com.example.KiranaTrackr.dtos.Store.StoreRequestDTOMapper;
-import com.example.KiranaTrackr.dtos.Store.StoreResponseDTO;
-import com.example.KiranaTrackr.dtos.Store.StoreResponseDTOMapper;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTOMapper;
+import com.example.KiranaTrackr.dtos.store.StoreRequestDTO;
+import com.example.KiranaTrackr.dtos.store.StoreRequestDTOMapper;
+import com.example.KiranaTrackr.dtos.store.StoreResponseDTO;
+import com.example.KiranaTrackr.dtos.store.StoreResponseDTOMapper;
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
-import com.example.KiranaTrackr.exceptions.TransactionNotFoundException;
 import com.example.KiranaTrackr.models.Store;
 import com.example.KiranaTrackr.services.Store.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;

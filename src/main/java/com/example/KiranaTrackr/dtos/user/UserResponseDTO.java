@@ -1,4 +1,4 @@
-package com.example.KiranaTrackr.dtos.User;
+package com.example.KiranaTrackr.dtos.user;
 
 import lombok.*;
 

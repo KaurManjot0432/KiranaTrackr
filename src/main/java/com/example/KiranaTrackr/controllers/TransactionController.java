@@ -1,9 +1,9 @@
 package com.example.KiranaTrackr.controllers;
 
-import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTOMapper;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTO;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTOMapper;
+import com.example.KiranaTrackr.dtos.transaction.TransactionRequestDTOMapper;
+import com.example.KiranaTrackr.dtos.transaction.TransactionResponseDTO;
+import com.example.KiranaTrackr.dtos.transaction.TransactionRequestDTO;
+import com.example.KiranaTrackr.dtos.transaction.TransactionResponseDTOMapper;
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
 import com.example.KiranaTrackr.models.Transaction;
 import com.example.KiranaTrackr.services.Transaction.TransactionService;

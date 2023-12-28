@@ -1,12 +1,9 @@
 package com.example.KiranaTrackr.controllers;
 
-import com.example.KiranaTrackr.dtos.Store.StoreResponseDTO;
-import com.example.KiranaTrackr.dtos.Store.StoreResponseDTOMapper;
-import com.example.KiranaTrackr.dtos.User.UserRequestDTO;
-import com.example.KiranaTrackr.dtos.User.UserRequestDTOMapper;
-import com.example.KiranaTrackr.dtos.User.UserResponseDTO;
-import com.example.KiranaTrackr.dtos.User.UserResponseDTOMapper;
-import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
+import com.example.KiranaTrackr.dtos.user.UserRequestDTO;
+import com.example.KiranaTrackr.dtos.user.UserRequestDTOMapper;
+import com.example.KiranaTrackr.dtos.user.UserResponseDTO;
+import com.example.KiranaTrackr.dtos.user.UserResponseDTOMapper;
 import com.example.KiranaTrackr.exceptions.UserNotFoundException;
 import com.example.KiranaTrackr.models.User;
 import com.example.KiranaTrackr.services.User.UserService;

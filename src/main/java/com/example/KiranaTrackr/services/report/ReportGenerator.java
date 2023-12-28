@@ -1,8 +1,8 @@
 package com.example.KiranaTrackr.services.report;
 
-import com.example.KiranaTrackr.dtos.Report.ReportResult;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTOMapper;
+import com.example.KiranaTrackr.dtos.report.ReportResult;
+import com.example.KiranaTrackr.dtos.transaction.TransactionResponseDTO;
+import com.example.KiranaTrackr.dtos.transaction.TransactionResponseDTOMapper;
 import com.example.KiranaTrackr.models.Transaction;
 import com.example.KiranaTrackr.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

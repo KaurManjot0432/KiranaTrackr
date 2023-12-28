@@ -1,7 +1,6 @@
-package com.example.KiranaTrackr.dtos.Report;
+package com.example.KiranaTrackr.dtos.report;
 
-import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
-import com.example.KiranaTrackr.models.Transaction;
+import com.example.KiranaTrackr.dtos.transaction.TransactionResponseDTO;
 import lombok.*;
 
 import java.math.BigDecimal;

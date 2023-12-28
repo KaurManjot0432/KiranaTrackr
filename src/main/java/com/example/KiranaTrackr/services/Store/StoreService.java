@@ -1,8 +1,7 @@
 package com.example.KiranaTrackr.services.Store;
 
-import com.example.KiranaTrackr.dtos.Store.StoreRequestDTO;
-import com.example.KiranaTrackr.dtos.Store.StoreResponseDTO;
+import com.example.KiranaTrackr.models.Store;
 
 public interface StoreService {
-    StoreResponseDTO createStore(StoreRequestDTO storeRequestDTO) ;
+    public Store createStore(Store store) ;
 }

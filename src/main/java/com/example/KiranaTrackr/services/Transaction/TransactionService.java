@@ -7,9 +7,9 @@ import com.example.KiranaTrackr.models.Transaction;
 import java.util.List;
 
 public interface TransactionService {
-    Transaction createTransaction(Transaction transaction);
+    public Transaction createTransaction(Transaction transaction);
 
-    Transaction getTransactionById(String transactionId);
+    public Transaction getTransactionById(String transactionId);
 
-    List<Transaction> getTransactionsByStoreId(String storeId);
+    public List<Transaction> getTransactionsByStoreId(String storeId);
 }

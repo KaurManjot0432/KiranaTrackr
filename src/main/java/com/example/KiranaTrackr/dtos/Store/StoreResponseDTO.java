@@ -4,6 +4,8 @@ import com.example.KiranaTrackr.models.User;
 import com.example.KiranaTrackr.models.enums.CurrencyType;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -16,6 +18,7 @@ public class StoreResponseDTO {
     private String name;
     private String description;
     private String address;
-    private User storeOwner;
+    private String storeOwnerId;
     private CurrencyType localCurrency;
+    private LocalDateTime createdAt;
 }

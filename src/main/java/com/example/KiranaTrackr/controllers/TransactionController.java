@@ -43,7 +43,7 @@ public class TransactionController {
         } catch (StoreNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Store not found");
         } catch (Exception e) {
-            return handleException(e, "Error occurred while processing getTransactionsByStoreId request");
+            return handleException(e);
         }
     }
 
@@ -59,7 +59,7 @@ public class TransactionController {
         } catch (TransactionNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Transaction not found");
         } catch (Exception e) {
-            return handleException(e, "Error occurred while processing getTransactionsByStoreId request");
+            return handleException(e);
         }
     }
 
@@ -75,12 +75,12 @@ public class TransactionController {
 
             return ResponseEntity.ok(responseDTOs);
         } catch (Exception e) {
-            return handleException(e, "Error occurred while processing getTransactionsByStoreId request");
+            return handleException(e);
         }
     }
 
-    private ResponseEntity<?> handleException(Exception e, String errorMessage) {
-        logger.error(errorMessage, e);
+    private ResponseEntity<?> handleException(Exception e) {
+        logger.error("Error occurred while processing request", e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Some Error occurred while processing your request");
     }

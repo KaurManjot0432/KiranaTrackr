@@ -34,6 +34,9 @@ public class Store {
     @DBRef
     private User storeOwner;
 
+    @NotNull
+    private String storeOwnerId;
+
     @Enumerated(EnumType.STRING)
     private CurrencyType localCurrency;
 

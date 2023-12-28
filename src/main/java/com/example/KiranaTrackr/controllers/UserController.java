@@ -34,12 +34,12 @@ public class UserController {
             UserResponseDTO responseDTO = UserResponseDTOMapper.mapToUserResponseDTO(response);
             return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
         } catch (Exception e) {
-            return handleException(e, "Error occurred while processing getTransactionsByStoreId request");
+            return handleException(e);
         }
     }
 
-    private ResponseEntity<?> handleException(Exception e, String errorMessage) {
-        logger.error(errorMessage, e);
+    private ResponseEntity<?> handleException(Exception e) {
+        logger.error("Error occurred while processing request", e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Some Error occurred while processing your request");
     }

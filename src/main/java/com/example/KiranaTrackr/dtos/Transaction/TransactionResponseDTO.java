@@ -20,7 +20,7 @@ public class TransactionResponseDTO {
     private BigDecimal amount;
     private PaymentType paymentType;
     private CurrencyType currencyType;
-    private User customer;
-    private Store store;
-    private LocalDateTime timestamp;
+    private String customerId;
+    private String storeId;
+    private LocalDateTime createdAt;
 }

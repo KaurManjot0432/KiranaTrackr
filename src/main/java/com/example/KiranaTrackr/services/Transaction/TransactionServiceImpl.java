@@ -41,22 +41,19 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public TransactionResponseDTO createTransaction(TransactionRequestDTO transactionRequestDTO) {
-        User user = userRepository.findById(transactionRequestDTO.getCustomerId())
-                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + transactionRequestDTO.getCustomerId()));
+    public Transaction createTransaction(Transaction transaction) {
+        User user = userRepository.findById(transaction.getCustomerId())
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + transaction.getCustomerId()));
 
-        Store store = storeRepository.findById(transactionRequestDTO.getStoreId())
-                .orElseThrow(() -> new StoreNotFoundException("Store not found with ID: " + transactionRequestDTO.getStoreId()));
+        Store store = storeRepository.findById(transaction.getStoreId())
+                .orElseThrow(() -> new StoreNotFoundException("Store not found with ID: " + transaction.getStoreId()));
 
         // Convert the transaction amount to the store's local currency
         BigDecimal convertedAmount = currencyConversionService.convert(
-                transactionRequestDTO.getAmount(),
-                transactionRequestDTO.getCurrencyType(),
+                transaction.getAmount(),
+                transaction.getCurrencyType(),
                 store.getLocalCurrency()
         );
-
-        Transaction transaction = new Transaction();
-        BeanUtils.copyProperties(transactionRequestDTO, transaction);
 
         transaction.setAmount(convertedAmount);
         transaction.setCustomer(user);
@@ -64,10 +61,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Transaction savedTransaction = transactionRepository.save(transaction);
 
-        TransactionResponseDTO responseDTO = new TransactionResponseDTO();
-        BeanUtils.copyProperties(savedTransaction, responseDTO);
-
-        return responseDTO;
+        return savedTransaction;
     }
 
     @Override

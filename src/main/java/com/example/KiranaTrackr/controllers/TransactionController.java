@@ -1,8 +1,11 @@
 package com.example.KiranaTrackr.controllers;
 
-import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTO;
+import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTOMapper;
 import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTO;
+import com.example.KiranaTrackr.dtos.Transaction.TransactionRequestDTO;
+import com.example.KiranaTrackr.dtos.Transaction.TransactionResponseDTOMapper;
 import com.example.KiranaTrackr.exceptions.StoreNotFoundException;
+import com.example.KiranaTrackr.models.Transaction;
 import com.example.KiranaTrackr.services.Transaction.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,10 +31,12 @@ public class TransactionController {
     @PostMapping
     public ResponseEntity<?> createTransaction(@RequestBody TransactionRequestDTO transactionRequestDTO) {
         try {
-            TransactionResponseDTO responseDTO = transactionService.createTransaction(transactionRequestDTO);
-            return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+            Transaction transaction = TransactionRequestDTOMapper.mapToTransactionRequestDTO(transactionRequestDTO);
+
+            Transaction response = transactionService.createTransaction(transaction);
+
+            return new ResponseEntity<>(TransactionResponseDTOMapper.mapToTransactionResponseDTO(response), HttpStatus.CREATED);
         } catch (UserNotFoundException e) {
-            // Handle the case where the user is not found
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         } catch (StoreNotFoundException e) {
             return new ResponseEntity<>("Store not found", HttpStatus.NOT_FOUND);
